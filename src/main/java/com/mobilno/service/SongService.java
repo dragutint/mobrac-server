@@ -14,4 +14,6 @@ public interface SongService {
     void delete(Integer id);
 
     Song insert(Song song);
+
+    Iterable<Song> findByArtist(Integer artistId);
 }

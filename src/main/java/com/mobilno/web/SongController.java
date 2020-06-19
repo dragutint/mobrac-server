@@ -24,6 +24,11 @@ public class SongController {
         return songService.findAll();
     }
 
+    @GetMapping("/by-artist/{artistId}")
+    public Iterable<Song> findSongsByArtist(@PathVariable Integer artistId){
+        return songService.findByArtist(artistId);
+    }
+
     @PostMapping("/insert")
     public Song insertSong(@RequestBody Song song){
         return songService.insert(song);

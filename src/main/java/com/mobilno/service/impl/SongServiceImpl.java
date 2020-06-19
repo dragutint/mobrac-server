@@ -2,6 +2,7 @@ package com.mobilno.service.impl;
 
 import com.mobilno.dao.ArtistDao;
 import com.mobilno.dao.SongDao;
+import com.mobilno.domain.Artist;
 import com.mobilno.domain.Song;
 import com.mobilno.service.SongService;
 import lombok.extern.log4j.Log4j2;
@@ -45,5 +46,11 @@ public class SongServiceImpl implements SongService {
     @Override
     public Song insert(Song song) {
         return songDao.save(song);
+    }
+
+    @Override
+    public Iterable<Song> findByArtist(Integer artistId) {
+        Artist artist = artistDao.findById(artistId).get();
+        return songDao.findByArtist(artist);
     }
 }

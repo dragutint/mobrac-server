@@ -1,9 +1,11 @@
 package com.mobilno.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +27,7 @@ public class Song implements Serializable {
     @JsonProperty("name")
     private String name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     @Column(name = "release_date")
     @JsonProperty("release_date")
     private LocalDate releaseDate;
