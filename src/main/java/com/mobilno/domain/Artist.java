@@ -1,6 +1,7 @@
 package com.mobilno.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,7 @@ public class Artist implements Serializable {
     private LocalDate birthDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy="artist", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="artist", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("artist")
     private Set<Song> songs = new HashSet<>();
 }

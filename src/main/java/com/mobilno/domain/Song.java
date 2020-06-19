@@ -37,7 +37,7 @@ public class Song implements Serializable {
     @JsonProperty("lyrics")
     private String lyrics;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonProperty("artist")
     @JoinColumn(name = "artist_id")
     private Artist artist;
