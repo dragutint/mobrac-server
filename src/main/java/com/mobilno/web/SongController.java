@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/song")
+@RequestMapping("/api/songs"    )
 public class SongController {
     @Autowired
     private SongService songService;
@@ -16,5 +16,20 @@ public class SongController {
     @GetMapping("/{id}")
     public Optional<Song> getSong(@PathVariable Integer id){
         return songService.get(id);
+    }
+
+    @GetMapping("")
+    public Iterable<Song> findSongs(){
+        return songService.findAll();
+    }
+
+    @PutMapping("{id}")
+    public Song updateSong(@RequestBody Song song, @PathVariable Integer id){
+        return songService.update(song, id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteSong(@PathVariable Integer id){
+        songService.delete(id);
     }
 }

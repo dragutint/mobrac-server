@@ -20,4 +20,19 @@ public class SongServiceImpl implements SongService {
     public Optional<Song> get(Integer id) {
         return songDao.findById(id);
     }
+
+    @Override
+    public Iterable<Song> findAll() {
+        return songDao.findAll();
+    }
+
+    @Override
+    public Song update(Song song, Integer id) {
+        return songDao.save(song);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        songDao.deleteById(id);
+    }
 }
