@@ -28,6 +28,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song update(Song song, Integer id) {
+        song.setId(id);
         return songDao.save(song);
     }
 
