@@ -35,4 +35,9 @@ public class SongServiceImpl implements SongService {
     public void delete(Integer id) {
         songDao.deleteById(id);
     }
+
+    @Override
+    public Song insert(Song song) {
+        return songDao.save(song);
+    }
 }

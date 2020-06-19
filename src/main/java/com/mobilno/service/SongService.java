@@ -12,4 +12,6 @@ public interface SongService {
     Song update(Song song, Integer id);
 
     void delete(Integer id);
+
+    Song insert(Song song);
 }

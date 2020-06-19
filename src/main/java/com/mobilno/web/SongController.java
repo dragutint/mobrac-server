@@ -23,12 +23,17 @@ public class SongController {
         return songService.findAll();
     }
 
-    @PutMapping("{id}")
+    @PostMapping("/insert")
+    public Song insertSong(@RequestBody Song song){
+        return songService.insert(song);
+    }
+
+    @PutMapping("/{id}")
     public Song updateSong(@RequestBody Song song, @PathVariable Integer id){
         return songService.update(song, id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteSong(@PathVariable Integer id){
         songService.delete(id);
     }
