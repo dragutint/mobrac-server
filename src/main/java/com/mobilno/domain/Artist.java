@@ -1,5 +1,6 @@
 package com.mobilno.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +9,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "songs")
-public class Song implements Serializable {
+@Table(name = "artist")
+public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,21 +29,15 @@ public class Song implements Serializable {
     @JsonProperty("name")
     private String name;
 
-    @Column(name = "release_date")
-    @JsonProperty("release_date")
-    private LocalDate releaseDate;
+    @Column(name = "country")
+    @JsonProperty("country")
+    private String country;
 
-    @Column(name = "album_name")
-    @JsonProperty("album_name")
-    private String albumName;
+    @Column(name = "birth_date")
+    @JsonProperty("birth_date")
+    private LocalDate birthDate;
 
-    @Column(name = "lyrics")
-    @JsonProperty("lyrics")
-    private String lyrics;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonProperty("artist")
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-
+    @JsonIgnore
+    @OneToMany(mappedBy="artist", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Song> songs = new HashSet<>();
 }

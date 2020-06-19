@@ -1,5 +1,6 @@
 package com.mobilno.service.impl;
 
+import com.mobilno.dao.ArtistDao;
 import com.mobilno.dao.SongDao;
 import com.mobilno.domain.Song;
 import com.mobilno.service.SongService;
@@ -15,6 +16,8 @@ public class SongServiceImpl implements SongService {
 
     @Autowired
     private SongDao songDao;
+    @Autowired
+    private ArtistDao artistDao;
 
     @Override
     public Optional<Song> get(Integer id) {
@@ -29,6 +32,8 @@ public class SongServiceImpl implements SongService {
     @Override
     public Song update(Song song, Integer id) {
         song.setId(id);
+        Song actualSong = get(id).get();
+        song.setArtist(actualSong.getArtist());
         return songDao.save(song);
     }
 

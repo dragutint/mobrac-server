@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/songs"    )
+@RequestMapping("/api/songs")
 public class SongController {
     @Autowired
     private SongService songService;
